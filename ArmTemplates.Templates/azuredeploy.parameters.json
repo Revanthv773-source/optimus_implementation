@@ -7,6 +7,21 @@
     },
     "serverfarms_NFR01ServicePlan_API_externalid": {
       "value": "#arm_serverfarms_NFR01ServicePlan_API_externalid#"
+    },
+    "appbaseAdminLogin": {
+      "value": "#arm_sqlUserName#"
+    },
+    "appbaseAdminLoginPassword": {
+      "value": "#arm_sqlPassword#"
+    },
+    "appbaseCollation": {
+      "value": "#SQL_Latin1_General_CP1_CI_AS#"
+    },
+    "appbaseEdition": {
+      "value": "#Basic#"
+    },
+    "appbaseRequestedServiceObjectiveName": {
+      "value": "#Basic#"
     }
   }
 } 
