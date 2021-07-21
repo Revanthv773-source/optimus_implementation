@@ -1,0 +1,376 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sites_SquirrelCloudNFR01API_name": {
+      "defaultValue": "SquirrelCloudNFR01API",
+      "type": "String"
+    },
+    "serverfarms_NFR01ServicePlan_API_externalid": {
+      "defaultValue": "/subscriptions/e28cd059-7351-482b-a6bc-ee8803505807/resourceGroups/NFR01-Applications/providers/Microsoft.Web/serverfarms/NFR01ServicePlan-API",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('sites_SquirrelCloudNFR01API_name')]",
+      "location": "Canada Central",
+      "tags": {
+        "hidden-related:/subscriptions/bed16387-80dc-449c-9d78-3d8d83d9f7cb/resourcegroups/SquirrelPOSPreviewResourceGroup/providers/Microsoft.Web/serverfarms/SquirrelCloudPosPreviewServicePlan": "empty",
+        "ENV": "Prod",
+        "hidden-related:diagnostics/applicationInsightsSettings": "{\"ApiKey\":\"TS5hXA99hLUAdvud0dJDMNSpoZxULyT73mjCulGYBtGpEhl3kclDHQo7aCWBB+pu\",\"AppId\":\"4178d1a1-5b4d-4486-a2ba-cd48f5b2863e\"}"
+      },
+      "kind": "app",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "apinfr01.squirrelposcloud.com",
+            "sslState": "SniEnabled",
+            "thumbprint": "C2D18395189B5A21253CD6BFA6EE6D0275737BA1",
+            "hostType": "Standard"
+          },
+          {
+            "name": "squirrelcloudnfr01api.azurewebsites.net",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "squirrelcloudnfr01api.scm.azurewebsites.net",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[parameters('serverfarms_NFR01ServicePlan_API_externalid')]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {
+          "numberOfWorkers": 1,
+          "alwaysOn": true,
+          "http20Enabled": false
+        },
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true,
+        "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/web')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "tags": {
+        "hidden-related:/subscriptions/bed16387-80dc-449c-9d78-3d8d83d9f7cb/resourcegroups/SquirrelPOSPreviewResourceGroup/providers/Microsoft.Web/serverfarms/SquirrelCloudPosPreviewServicePlan": "empty",
+        "ENV": "Prod",
+        "hidden-related:diagnostics/applicationInsightsSettings": "{\"ApiKey\":\"TS5hXA99hLUAdvud0dJDMNSpoZxULyT73mjCulGYBtGpEhl3kclDHQo7aCWBB+pu\",\"AppId\":\"4178d1a1-5b4d-4486-a2ba-cd48f5b2863e\"}"
+      },
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "publishingUsername": "$SquirrelCloudNFR01API",
+        "azureStorageAccounts": {},
+        "scmType": "VSTSRM",
+        "use32BitWorkerProcess": false,
+        "webSocketsEnabled": false,
+        "alwaysOn": true,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": true
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "64.225.22.87/32,104.143.83.241/32,77.74.177.113/32,1.38.202.164/32,66.102.9.6/32",
+            "action": "Deny",
+            "tag": "Default",
+            "priority": 100,
+            "name": "BlockIP",
+            "description": "POSTMessageHub/negotiate"
+          },
+          {
+            "ipAddress": "165.227.29.127/32,64.233.172.10/32,104.143.83.241/32,45.12.223.138/32,64.249.88.55/32",
+            "action": "Deny",
+            "tag": "Default",
+            "priority": 100,
+            "name": "BlockIP"
+          },
+          {
+            "ipAddress": "0.0.0.0/0",
+            "action": "Allow",
+            "tag": "Default",
+            "priority": 101,
+            "name": "Allow all",
+            "description": "Allow"
+          },
+          {
+            "ipAddress": "Any",
+            "action": "Deny",
+            "priority": 2147483647,
+            "name": "Deny all",
+            "description": "Deny all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "FtpsOnly",
+        "reservedInstanceCount": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34491624873342483')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13199\",\"releaseId\":\"3449\",\"buildNumber\":\"1.0.628.2\",\"releaseName\":\"Release-1.0.628.2\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T09:42:22.855014Z",
+        "end_time": "2021-06-28T09:42:22.855014Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34531624877128385')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13204\",\"releaseId\":\"3453\",\"buildNumber\":\"1.0.628.3\",\"releaseName\":\"Release-1.0.628.3\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T10:45:28.9136634Z",
+        "end_time": "2021-06-28T10:45:28.9136634Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624878872811')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T11:14:34.0684788Z",
+        "end_time": "2021-06-28T11:14:34.0684788Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624879904678')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T11:31:45.0379896Z",
+        "end_time": "2021-06-28T11:31:45.0379896Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624882039379')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T12:07:19.7307576Z",
+        "end_time": "2021-06-28T12:07:19.7307576Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624882669503')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T12:17:49.9598575Z",
+        "end_time": "2021-06-28T12:17:49.9598575Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624882933289')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T12:22:13.5353516Z",
+        "end_time": "2021-06-28T12:22:13.5353516Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/34541624884253782')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"ceb5a9501841fe657bc160bd701c9ff3403b972c\",\"buildId\":\"13205\",\"releaseId\":\"3454\",\"buildNumber\":\"1.0.628.4\",\"releaseName\":\"Release-1.0.628.4\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-06-28T12:44:14.1902195Z",
+        "end_time": "2021-06-28T12:44:14.1902195Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/35501626238299636')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"c34a24a40ed788079b5609668c8e89a70edbd5ef\",\"buildId\":\"13467\",\"releaseId\":\"3550\",\"buildNumber\":\"1.0.713.1\",\"releaseName\":\"Release-1.0.713.1\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-07-14T04:51:40.342795Z",
+        "end_time": "2021-07-14T04:51:40.342795Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/35821626671730016')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "status": 4,
+        "author": "ex-raj.kumar",
+        "deployer": "VSTS",
+        "message": "{\"type\":\"Deployment\",\"commitId\":\"36aee8290800bd1909c89eed0bb4930e2ab18c8c\",\"buildId\":\"13540\",\"releaseId\":\"3582\",\"buildNumber\":\"1.0.718.1\",\"releaseName\":\"Release-1.0.718.1\",\"repoProvider\":\"GitHub\",\"repoName\":\"SquirrelSystems/SquirrelAPI\",\"collectionUrl\":\"https://squirrelsource.visualstudio.com/\",\"teamProject\":\"ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"buildProjectUrl\":\"https://squirrelsource.visualstudio.com/ed6cbbe6-5991-4881-bae6-440e5b23dca3\",\"repositoryUrl\":\"\",\"branch\":\"NFR-API\",\"teamProjectName\":\"SquirrelCloud\",\"slotName\":\"production\"}",
+        "start_time": "2021-07-19T05:15:32.3463082Z",
+        "end_time": "2021-07-19T05:15:32.3463082Z",
+        "active": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/apinfr01.squirrelposcloud.com')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "siteName": "SquirrelCloudNFR01API",
+        "hostNameType": "Verified",
+        "sslState": "SniEnabled",
+        "thumbprint": "C2D18395189B5A21253CD6BFA6EE6D0275737BA1"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_SquirrelCloudNFR01API_name'), '/', parameters('sites_SquirrelCloudNFR01API_name'), '.azurewebsites.net')]",
+      "location": "Canada Central",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('sites_SquirrelCloudNFR01API_name'))]"
+      ],
+      "properties": {
+        "siteName": "SquirrelCloudNFR01API",
+        "hostNameType": "Verified"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sites_SquirrelCloudNFR01API_name": {
+      "value": "#arm_sites_SquirrelCloudNFR01API_name#"
+    },
+    "serverfarms_NFR01ServicePlan_API_externalid": {
+      "value": "#arm_serverfarms_NFR01ServicePlan_API_externalid#"
+    }
+  }
+} 

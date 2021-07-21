@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "optimus_implementation", "optimus_implementation\optimus_implementation.csproj", "{FBC5DE6F-1632-433C-B67E-778C101D88F1}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ArmTemplates.Templates", "ArmTemplates.Templates\ArmTemplates.Templates.deployproj", "{1F3AA53A-0F72-4C97-A723-E987A549A11F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBC5DE6F-1632-433C-B67E-778C101D88F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC5DE6F-1632-433C-B67E-778C101D88F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC5DE6F-1632-433C-B67E-778C101D88F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC5DE6F-1632-433C-B67E-778C101D88F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3AA53A-0F72-4C97-A723-E987A549A11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3AA53A-0F72-4C97-A723-E987A549A11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3AA53A-0F72-4C97-A723-E987A549A11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3AA53A-0F72-4C97-A723-E987A549A11F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {076997C0-254B-4A2E-B464-CF80B2C6DC8F}
+	EndGlobalSection
+EndGlobal
