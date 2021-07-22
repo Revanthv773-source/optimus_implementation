@@ -3,5 +3,6 @@
     "",
     "\\ArmTemplates.Templates"
   ],
+  "SelectedNode": "\\ArmTemplates.Templates\\azuredeploy.json",
   "PreviewInSolutionExplorer": false
 }

@@ -22,6 +22,10 @@
     },
     "appbaseRequestedServiceObjectiveName": {
       "value": "#Basic#"
+    },
+
+    "storageAccounts_storage773_name": {
+      "value": "#arm_storageAccounts_storage773_name#"
     }
   }
 } 
