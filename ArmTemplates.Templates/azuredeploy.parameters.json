@@ -8,6 +8,8 @@
     "serverfarms_NFR01ServicePlan_API_externalid": {
       "value": "#arm_serverfarms_NFR01ServicePlan_API_externalid#"
     },
+
+
     "appbaseAdminLogin": {
       "value": "#arm_sqlUserName#"
     },
@@ -24,12 +26,15 @@
       "value": "#Basic#"
     },
 
+
     "storageAccounts_storage773_name": {
       "value": "#arm_storageAccounts_storage773_name#"
     },
+
+
     "vaults_An_Empty_key_vault_name": {
       "value": "#arm_vaults_An_Empty_key_vault_name#"
     }
 
   }
-} 
+}
