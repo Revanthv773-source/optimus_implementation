@@ -474,6 +474,81 @@
 
 
 
+
+# key vault#
+
+
+
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2021-04-01-preview",
+      "name": "[parameters('sites_SquirrelCloudNFR01API_name')]",
+      "location": "eastus",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "Standard"
+        },
+        "tenantId": "b5db11ac-8f37-4109-a146-5d7a302f5881",
+        "accessPolicies": [
+          {
+            "tenantId": "b5db11ac-8f37-4109-a146-5d7a302f5881",
+            "objectId": "d1c13e76-d0ad-4a84-820f-8c3991fffd1c",
+            "permissions": {
+              "keys": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "secrets": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore"
+              ],
+              "certificates": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers"
+              ]
+            }
+          }
+        ],
+        "enabledForDeployment": false,
+        "enabledForDiskEncryption": false,
+        "enabledForTemplateDeployment": false,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 90,
+        "enableRbacAuthorization": false,
+        "vaultUri": "https://an-empty-key-vault.vault.azure.net/",
+        "provisioningState": "Succeeded"
+      }
+    },
+
+
+
+
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-04-01",

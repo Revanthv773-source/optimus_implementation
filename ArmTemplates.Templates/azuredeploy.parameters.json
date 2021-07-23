@@ -26,6 +26,10 @@
 
     "storageAccounts_storage773_name": {
       "value": "#arm_storageAccounts_storage773_name#"
+    },
+    "vaults_An_Empty_key_vault_name": {
+      "value": "#arm_vaults_An_Empty_key_vault_name#"
     }
+
   }
 } 
